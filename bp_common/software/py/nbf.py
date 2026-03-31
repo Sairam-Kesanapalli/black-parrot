@@ -141,8 +141,8 @@ class NBF:
   # returns flat data
   def read_binary(self, filename):
     data = []
-    f = open(filename, "r")
-    lines = f.readlines()
+    with open(filename, "r") as f:
+      lines = f.readlines()
     for line in lines:
       line = line.strip()
       data.append(int(line, 2))
@@ -152,8 +152,8 @@ class NBF:
   # returns flat data
   def read_file(self, filename):
     data = []
-    f = open(filename, "r")
-    lines = f.readlines()
+    with open(filename, "r") as f:
+      lines = f.readlines()
     for line in lines:
       data.append(line.strip())
     return data
@@ -169,8 +169,8 @@ class NBF:
     assembled_hex = ""
     base_addr = 0x80000000
 
-    f = open(mem_file, "r")
-    lines = f.readlines()
+    with open(mem_file, "r") as f:
+      lines = f.readlines()
 
     for line in lines:
       stripped = line.strip()
@@ -206,7 +206,7 @@ class NBF:
   # initialize dram
   def init_dram(self):
     if not(self.skip_zeros):
-      for k in xrange(self.mem_size*1024*1024/8):
+      for k in range(self.mem_size*1024*1024//8):
         self.print_nbf(3, 0x80000000 + k*8, 0)
     for k in sorted(self.dram_data.keys()):
       addr = k

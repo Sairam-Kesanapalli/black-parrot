@@ -14,9 +14,9 @@ args = parser.parse_args()
 
 print("#define DATA_LEN " + str(args.n*args.arr_len))
 print("uint32_t DATA[DATA_LEN] __attribute__((aligned(64)))= {")
-for i in xrange(args.n):
+for i in range(args.n):
   print("  ", end='')
-  for j in xrange(args.arr_len-1):
+  for j in range(args.arr_len-1):
     print("{0}, ".format(random.randint(0,args.rand_max)), end='')
   if i == args.n-1:
     print("{0}".format(random.randint(0,args.rand_max)))
